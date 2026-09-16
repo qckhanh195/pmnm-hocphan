@@ -1,2 +1,3 @@
 # pmnm-hocphan
-23t1020269
+
+**[Giấy phép - LICENSE](LICENSE)**
