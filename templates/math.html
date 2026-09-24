@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Phép toán cơ bản</title>
+</head>
+<body>
+  <h1>Phép toán cơ bản</h1>
+  <form method="post" action="/">
+    <input type="number" step="any" name="a" id="a" value="{{ a }}" required>
+    <input type="number" step="any" name="b" id="b" value="{{ b }}" required>
+    <button type="submit">Ok</button>
+  </form>
+
+  <div id="ketQua">
+    <ul>
+      <li>{{ a }} + {{ b }} = {{ cong }}</li>
+      <li>{{ a }} - {{ b }} = {{ tru }}</li>
+      <li>{{ a }} * {{ b }} = {{ nhan }}</li>
+      <li>{{ a }} / {{ b }} = {{ chia }}</li>
+    </ul>
+  </div>
+</body>
+</html>
