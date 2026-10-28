@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+  .open {
+    color: #198754;
+    font-weight: bold;
+  }
+  .closed {
+    color: #dc3545;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1>{{ shop.name }}</h1>
+  <p>Địa chỉ: {{ shop.address }}</p>
+  <p>Giờ mở cửa: {{ shop.open }}h - {{ shop.close }}h</p>
+
+  {% if is_open %}
+  <p class="open">Bây giờ là {{ hour }}h: Quán đang mở cửa.</p>
+  {% else %}
+  <p class="closed">Bây giờ là {{ hour }}h: Quán đang đóng cửa.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

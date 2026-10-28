@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Thực đơn{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+  .gia {
+    color: red;
+  }
+  .het-hang {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    text-decoration: line-through;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-3">Thực đơn ({{ menu|length }} món)</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên món</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Tình trạng</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in menu %}
+      <tr class="{% if not item.available %}het-hang{% endif %}">
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ item.name | title }}</td>
+        <td class="gia">{{ "{:,}".format(item.price) }} VNĐ</td>
+        <td>
+          {% if item.available %}
+          <span>Còn hàng</span>
+          {% else %}
+          <span>Hết hàng</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      {% set available_items = menu | selectattr("available") | list %}
+      {% set total_price = menu | map(attribute="price") | sum %}
+      {% set avg_price = total_price / menu|length if menu|length > 0 else 0 %}
+
+      <tr class="table-secondary fw-bold">
+        <td colspan="2">Tổng cộng: {{ available_items|length }}/{{ menu|length }} món còn hàng</td>
+        <td colspan="2">Giá trung bình: {{ "{:,.0f}".format(avg_price) }} VNĐ</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% endblock %}
