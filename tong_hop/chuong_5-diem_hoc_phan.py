@@ -3,12 +3,6 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 def validate_score(val_str):
-    """
-    Hàm dùng chung để xử lý và kiểm tra dữ liệu điểm cho cả 3 ô:
-    - Kiểm tra bỏ trống.
-    - Thay thế dấu phẩy (,) thành dấu chấm (.).
-    - Ép kiểu float và kiểm tra miền giá trị từ 0 đến 10.
-    """
     if not val_str or val_str.strip() == "":
         return None, "Vui lòng nhập điểm."
     

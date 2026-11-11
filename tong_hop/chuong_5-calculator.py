@@ -26,7 +26,6 @@ def index():
     errors = {'a': None, 'b': None, 'op': None}
 
     if request.method == 'POST':
-        # Lấy dữ liệu từ form bằng request.form
         a_raw = request.form.get('a', '')
         b_raw = request.form.get('b', '')
         op = request.form.get('op', '+')
